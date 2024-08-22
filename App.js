@@ -1,32 +1,18 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Image } from "react-native";
-// Import hình ảnh từ thư mục cục bộ
-import profileImage from "./assets/cat.jpg";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ProfilePage from "./components/ProfilePage";
+import HomePage from "./components/HomePage";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
     return (
-        <View style={styles.container}>
-            <Image source={profileImage} style={styles.image} />
-            <Text style={styles.textName}>Nguyễn Khánh Quy</Text>
-            <StatusBar style="auto" />
-        </View>
+        <NavigationContainer>
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="Profile" component={ProfilePage} />
+                <Stack.Screen name="Home" component={HomePage} />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    image: {
-        width: 120,
-        height: 120,
-        borderRadius: 10,
-        marginBottom: 20,
-    },
-    textName: {
-        fontSize: 24,
-    },
-});
